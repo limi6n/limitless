@@ -1,0 +1,23 @@
+.footer{
+    text-align: center;
+}
+
+.footer_btn{
+    font-size: .6rem; margin-top:2rem;
+}
+
+.footer_logo{
+    margin-top: 1rem; font-family: 'Nanum Pen Script', cursive;
+}
+
+.header {
+    text-align: center; margin:2rem 0;
+}
+
+.header_logo {
+    font-family: 'Lobster', cursive;
+}
+
+.header_nav{
+    margin-bottom:2rem;
+}
