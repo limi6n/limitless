@@ -3,14 +3,17 @@
         <h1 class="header_logo">Pinterest</h1>
     </div>
     <div class="header_nav">
-        <span>nav1</span>
-        <span>nav2</span>
-        <span>nav3</span>
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
             <span>Login</span>
         </a>
         {% else %}
+        <a href="{% url 'accountapp:detail' pk=user.pk %}">
+            <span>MyPage</span>
+        </a>
+        <span>nav1</span>
+        <span>nav2</span>
+        <span>nav3</span>
         <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
             <span>Logout</span>
         </a>
