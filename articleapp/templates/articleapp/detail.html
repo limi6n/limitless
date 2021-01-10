@@ -20,8 +20,6 @@
             {{ target_article.content }}
         </p>
 
-        <hr>
-
         {% if target_article.writer == user %}
         <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-primary rounded-pill col-3">
             Update
@@ -30,6 +28,18 @@
             Delete
         </a>
         {% endif %}
+
+        <hr>
+
+        <!-- comment list -->
+        {% if target_article.comment %}
+        {% for comment in target_article.comment.all %}
+            {% include 'commentapp/detail.html' with comment=comment %}
+        {% endfor %}
+        {% endif %}
+
+        <!-- comment 입력 -->
+        {% include 'commentapp/create.html' with article=target_article %}
     </div>
 </div>
 
