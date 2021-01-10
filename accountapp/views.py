@@ -27,7 +27,7 @@ def hello_world(request):
 
 
 class AccountCreateView(CreateView):
-    model = User #django에서 기본적으로 제공하는 User 모델
-    form_class = UserCreationForm #django에서 기본 제공
-    success_url = reverse_lazy('accountapp:hello_world') #reverse는 함수형에서 reverse_lazy는 class형에서 사용
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/create.html'
