@@ -18,32 +18,23 @@
     }
 </style>
 
+{% if article_list %}
 <div class="container">
-    <div class="item1">
-        <img src="https://picsum.photos/200/300" >
-    </div>
-    <div class="item2">
-        <img src="https://picsum.photos/200/340" >
-    </div>
-    <div class="item3">
-        <img src="https://picsum.photos/200/200" >
-    </div>
-    <div class="item4">
-        <img src="https://picsum.photos/200/150" >
-    </div>
-    <div class="item5">
-        <img src="https://picsum.photos/200/400" >
-    </div>
-    <div class="item6">
-        <img src="https://picsum.photos/200/280" >
-    </div>
-    <div class="item7">
-        <img src="https://picsum.photos/200/240" >
-    </div>
-    <div class="item8">
-        <img src="https://picsum.photos/200/320" >
-    </div>
+    {% for article in article_list %}
+    <a href="{% url 'articleapp:detail' pk=article.pk %}">
+        <!-- with : card.html 에 쓰일 article 과 for문 안의 article 객체가 같다고 설정 -->
+        {% include 'snippets/card.html' with article=article %}
+    </a>
+    {% endfor %}
 </div>
+<script src="{% static 'js/magicgrid.js' %}"></script>
+{% else %}
+<div style="text-align: center">
+    <h1>No Articles YET!</h1>
+</div>
+{% endif %}
+
+{% include 'snippets/pagination.html' with page_obj=page_obj %}
 
 <div style="text-align: center;">
     <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3">
@@ -51,6 +42,6 @@
     </a>
 </div>
 
-<script src="{% static 'js/magicgrid.js' %}"/></script>
+
 
 {% endblock %}
