@@ -19,5 +19,24 @@
 }
 
 .header_nav{
-    margin-bottom:2rem;
+    margin: 1rem 0;
+}
+
+.header_nav_a {
+    margin: 0 0.5rem;
+}
+
+@media screen and (max-width: 500px) {
+    html{
+        font-size: 13px;
+    }
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
 }
