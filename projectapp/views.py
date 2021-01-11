@@ -10,6 +10,7 @@ from django.views.generic.list import MultipleObjectMixin
 from articleapp.models import Article
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
+from subscribeapp.models import Subscription
 
 
 @method_decorator(login_required, 'get')
@@ -32,8 +33,15 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
 
     # project 에 해당하는 article들만 불러오기
     def get_context_data(self, **kwargs):
+        project = self.object
+        user = self.request.user
+        # project 를 구독하는지 아닌지 확인 후 구독하면 구독정보를 target_project에 넣어줌(detail화면에서 사용가능)
+        if user.is_authenticated:
+            subscription = Subscription.objects.filter(user=user, project=project)
         object_list = Article.objects.filter(project=self.get_object())
-        return super(ProjectDetailView, self).get_context_data(object_list=object_list, **kwargs)
+        return super(ProjectDetailView, self).get_context_data(object_list=object_list,
+                                                               subscription=subscription,
+                                                               **kwargs)
 
 
 class ProjectListView(ListView):
