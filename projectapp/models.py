@@ -10,3 +10,8 @@ class Project(models.Model):
     description = models.CharField(max_length=200, null=True)
 
     created_at = models.DateTimeField(auto_now=True)
+
+    # 파이썬 내부 함수 (string 치환..?)
+    def __str__(self):
+        return f'{self.pk} : {self.title}'
+
